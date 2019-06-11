@@ -1,3 +1,5 @@
+import pandas as pd
+
 def test(df):
   # Userごとに連番をふる
   df['Seq'] = df.groupby('GA ID').cumcount() + 1
