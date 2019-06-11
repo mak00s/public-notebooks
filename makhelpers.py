@@ -26,8 +26,8 @@ def test(df):
       'Page URL','Page title',
       'Product code','Product name','Product count','Product quantity','Product revenue','Transaction Id'
      ]
-  for i in df2.columns.to_list():
+  for i in df.columns.to_list():
     if i in ar:
-        df2[i] = df2[i].apply(lambda x:",".join(x) if pd.notnull(x) else x)
+        df[i] = df[i].apply(lambda x:",".join(x) if pd.notnull(x) else x)
 
   return df
