@@ -32,4 +32,10 @@ def test(df):
     if i in ar:
         df[i] = df[i].apply(lambda x:",".join(x) if pd.notnull(x) else x)
 
+  # 日付と時間を統合
+  df['sessions.activities.time'].replace('午前', 'AM', inplace=True, regex=True)
+  df['sessions.activities.time'].replace('午後', 'PM', inplace=True, regex=True)
+  df['DateTime'] = pd.to_datetime(df['date'] + ' ' + df['sessions.activities.time'])
+  df.drop(['date', 'sessions.activities.time'], axis=1, inplace=True)
+
   return df
