@@ -37,5 +37,14 @@ def test(df):
   df['sessions.activities.time'].replace('午後', 'PM', inplace=True, regex=True)
   df['DateTime'] = pd.to_datetime(df['date'] + ' ' + df['sessions.activities.time'])
   df.drop(['date', 'sessions.activities.time'], axis=1, inplace=True)
+  
+  # 出力するカラムの種類と順番を制御
+  cols = []
+  want = ['GA ID','Device','Channel','Seq','DateTime','Page URL',
+       'Page title','Event category','Event action','Event label',
+       'Product code','Product name','Product revenue','Transaction Id']
+  for q in want:
+    if q in df.columns:
+      cols.append(q)
 
-  return df
+  return df[cols]
